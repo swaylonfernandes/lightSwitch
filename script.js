@@ -1,22 +1,26 @@
-const toggleBtn = document.getElementById("theme-toggle");
-const themeText = document.getElementById("theme-text");
-const body = document.body;
+let btn = document.getElementById("btn");
+let theme = document.getElementById("linkTag");
+let para = document.querySelector("#paragraph");
+let mainQuote = document.querySelector("#quote");
+let pic = document.querySelector("#bulb");
 
-if (localStorage.getItem("theme") === "dark") {
-  body.classList.add("dark-mode");
-  themeText.textContent = "Summon the Night";
-} else {
-  themeText.textContent = "Let there be Light";
-}
-
-toggleBtn.addEventListener("click", () => {
-  body.classList.toggle("dark-mode");
-
-  if (body.classList.contains("dark-mode")) {
-    themeText.textContent = "Summon the Night";
-    localStorage.setItem("theme", "dark");
-  } else {
-    themeText.textContent = "Let there be Light";
-    localStorage.setItem("theme", "light");
-  }
-});
+btn.addEventListener("click", () => {
+    let currMode = theme.getAttribute("href");
+    if(currMode === "light.css")
+        {
+            theme.setAttribute("href","dark.css")
+            
+            mainQuote.innerText = "Let there be Light";
+            para.innerText = "Darkness invites introspection, concealing details but deepening the mystery. In shadow, we turn inward, finding comfort in subtlety and silence. Dark Mode is not merely an aesthetic — it is the quiet reminder that clarity is not always found in what is seen, but often in what is felt. In the embrace of darkness, we discover focus, serenity, and the vastness of the unseen.";
+            pic.setAttribute("src","whiteBulb.png");
+            
+        }
+    else if (currMode === "dark.css")
+        {
+            theme.setAttribute("href","light.css")
+            
+            mainQuote.innerText = "Summon the Night";
+            para.innerText = "Light unveils clarity, illuminating every detail and leaving nothing hidden in shadow. In brightness, there is a sense of openness, of truth laid bare before us. Light Mode is not just a theme — it is a reflection of our desire to understand, to see things as they are, and to navigate the world with clarity and purpose. In the glow of light, everything feels possible.";
+            pic.setAttribute("src","blackBulb.png");
+        }
+})
